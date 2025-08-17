@@ -1,25 +1,24 @@
 import { useEffect, useReducer } from "react";
 
-function useApi(URL) {
-  const initialValue = {
-    // loading, success, failed
-    status: "",
-    data: [],
-    error: null,
-  };
-  function reducer(state, action) {
-    switch (action.type) {
-      case "start":
-        return { ...state, status: "loading" };
-      case "success":
-        return { status: "success", data: action.payload };
-      case "error":
-        return { ...state, status: "failed", error: action.payload };
-      default:
-        return { ...state };
-    }
+const initialValue = {
+  // loading, success, failed
+  status: "",
+  data: [],
+  error: null,
+};
+function reducer(state, action) {
+  switch (action.type) {
+    case "start":
+      return { ...state, status: "loading" };
+    case "success":
+      return { status: "success", data: action.payload };
+    case "error":
+      return { ...state, status: "failed", error: action.payload };
+    default:
+      return { ...state };
   }
-
+}
+function useApi(URL) {
   const [{ status, data }, dispatch] = useReducer(reducer, initialValue);
 
   useEffect(() => {
