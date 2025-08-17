@@ -1,0 +1,10 @@
+
+############## ==FAKE API==##############
+
+to create a faek sever or fake API:
+1. first install "npm i json-server"
+2. Add in package.json ""server": "json-server --watch data/[filename].json --port 9000"" under script.
+3. Then run in terminal "npm run server"
+
+
+
