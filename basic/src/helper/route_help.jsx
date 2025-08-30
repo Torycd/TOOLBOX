@@ -26,3 +26,15 @@ const route_help = () => {
 };
 
 export default route_help;
+
+// how to use nested route
+
+import { Outlet } from "react-router-dom";
+
+export function Parent() {
+  return (
+    <div>
+      <Outlet />
+    </div>
+  );
+}
