@@ -4,7 +4,7 @@ const nameContext = createContext({
   item: [],
   func: () => {},
 });
-function nameProvider() {
+function NameProvider() {
   const item = [];
   function func() {}
   return <nameContext.Provider value={{ item, func }}></nameContext.Provider>;
@@ -14,4 +14,4 @@ function usePosts() {
   const context = useContext(nameContext);
   return context;
 }
-export { nameProvider, usePosts };
+export { NameProvider, usePosts };
