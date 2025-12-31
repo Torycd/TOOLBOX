@@ -15,7 +15,7 @@ function reduce({ list }) {
         .map((eachItem) => eachItem.specific)
         .includes(currentValue.specific)
     ) {
-      return [...accumulator, { define: currentValue.specificProperty }];
+      return [...accumulator, { : currentValue.specificProperty }];
     } else return accumulator;
   }, initialValue);
 
