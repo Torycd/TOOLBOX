@@ -12,6 +12,7 @@ function ApiProvider({ children }) {
   const [Data, setDate] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+
   useEffect(() => {
     const handleApi = async () => {
       setIsLoading(true);
@@ -49,10 +50,10 @@ function ApiProvider({ children }) {
   );
 }
 
-export default ApiProvider;
-
 export function useApi() {
   const context = useContext(ApiContext);
   if (!context) return new Error("useApi must be used within a ApiProvider");
   return context;
 }
+
+export { ApiProvider, useApi };

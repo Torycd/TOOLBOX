@@ -1,4 +1,4 @@
-import { Children, createContext, useState } from "react";
+import { createContext, useState } from "react";
 
 const StoreContext = createContext({
   data: [],
@@ -7,8 +7,9 @@ const StoreContext = createContext({
   deleteData: () => {},
 });
 
-function StoreCartProviderHelper(children) {
+function StoreCartProviderHelper({ children }) {
   const [selectedData, setSelectedDate] = useState([]);
+
   const valueItem = {
     data: selectedData,
     addData: handleAdd,
@@ -16,6 +17,7 @@ function StoreCartProviderHelper(children) {
     deleteData: handleDelete,
     setSelectedDate,
   };
+
   const handleAdd = (itm) => {
     setSelectedDate((previousSelected) => {
       const exisiting = previousSelected.find((i) => i.id == itm.id);
