@@ -1,42 +1,43 @@
 import { useEffect, useReducer } from "react";
 
 const initialValue = {
-  // loading, success, failed
-  status: "",
+  isLoading: false,
   data: [],
   error: null,
 };
 function reducer(state, action) {
   switch (action.type) {
-    case "start":
-      return { ...state, status: "loading" };
-    case "success":
-      return { status: "success", data: action.payload };
-    case "error":
-      return { ...state, status: "failed", error: action.payload };
+    case "loading":
+      return { ...state, isLoading: true };
+    case "api/loaded":
+      return { ...state, isLoading: false, data: action.payload };
+    case "api/error":
+      return { ...state, isLoading: false, error: action.payload };
     default:
-      return { ...state };
+      throw new Error("Unknow Action");
   }
 }
 function useApi(URL) {
-  const [{ status, data }, dispatch] = useReducer(reducer, initialValue);
+  const [{ isLoading, data, error }, dispatch] = useReducer(
+    reducer,
+    initialValue,
+  );
 
   useEffect(() => {
-    dispatch({ type: "start" });
     const handleFetch = async () => {
+      dispatch({ type: "loading" });
       try {
         const response = await fetch(URL);
         const data = await response.json();
-        dispatch({ type: "success", payload: data });
+        dispatch({ type: "api/loaded", payload: data });
       } catch (err) {
-        dispatch({ type: "failed", payload: err.message });
-        throw new Error("Failed to fecth data");
+        dispatch({ type: "api/error", payload: err.message });
       }
     };
     handleFetch();
   }, [URL]);
 
-  return { status, data };
+  return { isLoading, data, error };
 }
 
 export default useApi;
