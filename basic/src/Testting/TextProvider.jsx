@@ -13,7 +13,7 @@ const TextContext = createContext({
   removeData: () => {},
 });
 
-function TextProvider() {
+function TextProvider({ children }) {
   const [tools, setTools] = useState(DATA);
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState(1);
