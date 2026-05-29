@@ -15,8 +15,8 @@ const TextContext = createContext({
 
 function TextProvider({ children }) {
   const [tools, setTools] = useState(DATA);
-  const [name, setName] = useState("");
-  const [quantity, setQuantity] = useState(1);
+  // const [name, setName] = useState("");
+  // const [quantity, setQuantity] = useState(1);
 
   const valueItem = {
     data: tools,
