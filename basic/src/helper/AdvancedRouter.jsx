@@ -1,5 +1,6 @@
 import {
   createBrowserRouter,
+  Outlet,
   RouterProvider,
   useNavigate,
   useNavigation,
@@ -32,7 +33,9 @@ export function HomePage() {
   return (
     <div>
       {isloading && <h1>loading...</h1>}
-      <main>menu</main>
+      <main>
+        <Outlet />
+      </main>
     </div>
   );
 }
